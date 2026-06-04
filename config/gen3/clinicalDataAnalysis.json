@@ -1,35 +1,48 @@
 {
-  "index": "subject",
-  "initialFields": ["race", "gender", "ethnicity", "age_at_enrollment"],
-  "uniqueIdField": "_subject_id",
-  "dataTypename": "Subject",
+  "index": "donor",
+  "initialFields": ["sex", "age_at_diagnosis", "bc_type", "clinical_subtype"],
+  "uniqueIdField": "donor_id",
+  "dataTypename": "Donor",
   "tabs": [
     {
       "label": "Demographic",
-      "color": "#2081A8",
+      "color": "#4D00C7",
       "facets": [
         {
-          "field": "gender",
+          "field": "sex",
           "label": "Sex",
           "description": "Text designations that identify sex."
         },
-        {
-          "field": "race"
-        },
         { "field": "ethnicity" },
-        { "field": "age_at_enrollment", "type": "age" }
+        { "field": "menopausal_status", "label": "Menopausal Status" },
+        { "field": "age_at_diagnosis", "label": "Age at Diagnosis", "type": "age" }
       ]
     },
     {
-      "label": "Data",
-      "color": "#20A8A8",
+      "label": "Clinical",
+      "color": "#DB3C00",
       "facets": [
-        {
-          "field": "experimental_group"
-        },
-        {
-          "field": "project_id"
-        }
+        { "field": "bc_type", "label": "Breast Cancer Type" },
+        { "field": "clinical_subtype", "label": "Clinical Subtype" },
+        { "field": "core_clinical_subtype", "label": "Core Clinical Subtype" },
+        { "field": "lymph_node_involvement", "label": "Lymph Node Involvement" },
+        { "field": "ki67_initial_diagnosis", "label": "Ki67 at Initial Diagnosis" },
+        { "field": "survival_status", "label": "Survival Status" },
+        { "field": "distant_metastasis_flag", "label": "Distant Metastasis" },
+        { "field": "local_recurrence_flag", "label": "Local Recurrence" },
+        { "field": "mutation_gene", "label": "Mutation Gene" }
+      ]
+    },
+    {
+      "label": "Assays",
+      "color": "#2D9794",
+      "facets": [
+        { "field": "wgs_count", "label": "WGS" },
+        { "field": "wts_count", "label": "WTS" },
+        { "field": "snp_count", "label": "SNP" },
+        { "field": "chromium_count", "label": "Chromium" },
+        { "field": "visium_count", "label": "Visium" },
+        { "field": "xenium_count", "label": "Xenium" }
       ]
     }
   ]
