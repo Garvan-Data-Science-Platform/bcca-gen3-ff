@@ -1,40 +1,54 @@
 [
   {
-    "tabTitle": "Subjects",
+    "tabTitle": "Donors",
     "charts": {
-      "experimental_group": {
-        "chartType": "fullPie",
-        "title": "Experimental Group",
-        "label": {
-          "show": true
-        },
-        "showLegendInChart": false
-      },
       "ethnicity": {
-        "chartType": "horizontalStacked",
+        "chartType": "bar",
         "title": "Ethnicity"
+      },
+      "menopausal_status": {
+        "chartType": "pie",
+        "title": "Menopausal Status"
+      },
+      "bc_type": {
+        "chartType": "stackedBar",
+        "title": "Breast cancer type"
+      },
+      "clinical_subtype": {
+        "chartType": "stackedBar",
+        "title": "Clinical Subtype"
       }
     },
     "filters": {
       "tabs": [
         {
-          "title": "Project Selection",
-          "fields": ["project_id"]
+          "title": "Donor",
+          "fields": [
+            "sex",
+            "age_at_diagnosis",
+            "menopausal_status",
+            "ethnicity",
+            "bc_type",
+            "clinical_subtype",
+            "core_clinical_subtype",
+            "lymph_node_involvement",
+            "ki67_initial_diagnosis",
+            "survival_status",
+            "distant_metastasis_flag",
+            "local_recurrence_flag",
+            "mutation_gene"
+          ]
         },
         {
-          "title": "Subjects",
+          "title": "Assays",
           "fields": [
-            "gender",
-            "race",
-            "ethnicity",
-            "age_at_enrollment",
-            "experimental_group"
-          ],
-          "fieldsConfig": {
-            "gender": {
-              "label": "Sex"
-            }
-          }
+            "wgs_count",
+            "wts_count",
+            "snp_count",
+            "chromium_count",
+            "visium_count",
+            "xenium_count"
+          ]
         }
       ]
     },
@@ -44,18 +58,18 @@
         "limit": 10000
       },
       "fields": [
-        "project_id",
-        "submitter_id",
-        "race",
+        "donor_id",
+        "sex",
+        "age_at_diagnosis",
+        "menopausal_status",
         "ethnicity",
-        "age_at_enrollment",
-        "experimental_group"
-      ],
-      "columns": {
-        "submitter_id": {
-          "sortable": false
-        }
-      }
+        "bc_type",
+        "clinical_subtype",
+        "lymph_node_involvement",
+        "survival_status",
+        "tissue_count",
+        "assay_count"
+      ]
     },
     "dropdowns": {
       "download-table": {
@@ -71,7 +85,7 @@
             "rightIcon": "download",
             "action": "data-json",
             "actionArgs": {
-              "filename": "gen3_datacommon_subjects.json"
+              "filename": "bcca_donors.json"
             }
           },
           {
@@ -82,7 +96,7 @@
             "rightIcon": "download",
             "action": "data-csv",
             "actionArgs": {
-              "filename": "gen3_datacommon_data_table.csv"
+              "filename": "bcca_donors.csv"
             }
           }
         ]
@@ -93,110 +107,263 @@
         "enabled": true,
         "type": "manifest",
         "action": "manifest",
-        "title": "Download File Manifest for Subjects",
+        "title": "Download Manifest",
         "leftIcon": "datafile",
         "rightIcon": "download",
-        "fileName": "subject_files_manifest.json",
-        "actionArgs": {
-          "resourceIndexType": "file",
-          "resourceIdField": "_subject_id",
-          "referenceIdFieldInResourceIndex": "_subject_id",
-          "referenceIdFieldInDataIndex": "_file_id",
-          "fileFields": ["file_name", "file_size", "md5sum", "object_id"]
-        }
+        "fileName": "donor_manifest.json"
       }
     ],
     "loginForDownload": false,
     "guppyConfig": {
-      "dataType": "subject",
-      "nodeCountTitle": "Subject",
-      "fieldMapping": [
-        {
-          "field": "_samples_count",
-          "name": "Samples Count"
-        },
-        {
-          "field": "_imaging_files_count",
-          "name": "Imaging Files Count"
-        },
-        {
-          "field": "_unaligned_reads_files_count",
-          "name": "Unaligned Reads Count"
-        },
-        {
-          "field": "_aligned_reads_files_count",
-          "name": "Aligned Reads Count"
-        },
-        {
-          "field": "_expression_arrays_count",
-          "name": "Expression Arrays Count"
-        }
-      ],
-      "manifestMapping": {
-        "resourceIndexType": "file",
-        "resourceIdField": "object_id",
-        "referenceIdFieldInResourceIndex": "subject_id",
-        "referenceIdFieldInDataIndex": "subject_id"
-      },
-      "accessibleFieldCheckList": ["project"],
-      "accessibleValidationField": "project"
+      "dataType": "donor",
+      "nodeCountTitle": "Donors"
     }
   },
   {
-    "tabTitle": "Data Files",
+    "tabTitle": "Tissues",
     "charts": {
-      "file_type": {
-        "chartType": "stackedBar",
-        "title": "File Type"
+      "tissue_type": {
+        "chartType": "pie",
+        "title": "Tissue Type"
       },
-      "file_format": {
+      "tissue_site": {
+        "chartType": "bar",
+        "title": "Tissue Site"
+      },
+      "clinical_subtype": {
         "chartType": "stackedBar",
-        "title": "File Format"
+        "title": "Clinical Subtype"
       }
     },
     "filters": {
       "tabs": [
         {
-          "title": "File",
-          "fields": ["project_id", "data_type", "data_format", "data_category"]
+          "title": "Tissue",
+          "fields": [
+            "tissue_type",
+            "tissue_category",
+            "therapeutic_status",
+            "tissue_site",
+            "er_status",
+            "pr_status",
+            "her2_ihc",
+            "ki67_percentage",
+            "tils_percentage",
+            "clinical_subtype",
+            "core_clinical_subtype",
+            "grade",
+            "ecotype_broad",
+            "ecotype"
+          ]
+        },
+        {
+          "title": "Assays",
+          "fields": [
+            "has_wgs",
+            "has_wts",
+            "has_snp",
+            "has_chromium",
+            "has_visium",
+            "has_xenium"
+          ]
+        },
+        {
+          "title": "Donor",
+          "fields": [
+            "age_at_diagnosis",
+            "menopausal_status",
+            "bc_type",
+            "donor_clinical_subtype",
+            "lymph_node_involvement",
+            "survival_status"
+          ]
         }
       ]
     },
     "table": {
       "enabled": true,
-      "fields": ["project_id", "file_name", "file_size", "_file_id"]
-    },
-    "guppyConfig": {
-      "dataType": "file",
-      "fieldMapping": [
-        {
-          "field": "file_id",
-          "name": "GUID"
-        }
-      ],
-      "nodeCountTitle": "Files",
-      "manifestMapping": {
-        "resourceIndexType": "subject",
-        "resourceIdField": "subject_id",
-        "referenceIdFieldInResourceIndex": "object_id",
-        "referenceIdFieldInDataIndex": "object_id"
+      "pageLimit": {
+        "limit": 10000
       },
-      "accessibleFieldCheckList": ["subject_id"],
-      "accessibleValidationField": "subject_id",
-      "downloadAccessor": "subject_id"
+      "fields": [
+        "tissue_id",
+        "donor_id",
+        "tissue_type",
+        "tissue_category",
+        "tissue_site",
+        "therapeutic_status",
+        "er_status",
+        "pr_status",
+        "her2_ihc",
+        "clinical_subtype",
+        "grade",
+        "ecotype_broad",
+        "has_visium",
+        "has_xenium"
+      ]
+    },
+    "dropdowns": {
+      "download-table": {
+        "title": "Download Table",
+        "leftIcon": "gen3:download",
+        "rightIcon": "gen3:chevron-down",
+        "dropdownItems": [
+          {
+            "enabled": true,
+            "type": "data-json",
+            "title": "JSON",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "action": "data-json",
+            "actionArgs": {
+              "filename": "bcca_tissues.json"
+            }
+          },
+          {
+            "enabled": true,
+            "type": "data-csv",
+            "title": "CSV",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "action": "data-csv",
+            "actionArgs": {
+              "filename": "bcca_tissues.csv"
+            }
+          }
+        ]
+      }
     },
     "buttons": [
       {
         "enabled": true,
         "type": "manifest",
-        "title": "Download File Manifest",
+        "action": "manifest",
+        "title": "Download Manifest",
         "leftIcon": "datafile",
         "rightIcon": "download",
-        "actionArgs": {
-          "filename": "data_table_manifest.csv"
-        }
+        "fileName": "tissue_manifest.json"
       }
     ],
-    "loginForDownload": true
+    "loginForDownload": false,
+    "guppyConfig": {
+      "dataType": "tissue",
+      "nodeCountTitle": "Tissues"
+    }
+  },
+  {
+    "tabTitle": "Assays",
+    "charts": {
+      "modality": {
+        "chartType": "stackedBar",
+        "title": "Modality"
+      },
+      "phenotype": {
+        "chartType": "pie",
+        "title": "Phenotype"
+      }
+    },
+    "filters": {
+      "tabs": [
+        {
+          "title": "Assay",
+          "fields": [
+            "modality",
+            "phenotype",
+            "compartment",
+            "batch"
+          ]
+        },
+        {
+          "title": "Tissue",
+          "fields": [
+            "tissue_type",
+            "tissue_category",
+            "tissue_site",
+            "therapeutic_status",
+            "er_status",
+            "pr_status",
+            "her2_ihc",
+            "clinical_subtype",
+            "grade"
+          ]
+        },
+        {
+          "title": "Donor",
+          "fields": [
+            "age_at_diagnosis",
+            "menopausal_status",
+            "bc_type",
+            "donor_clinical_subtype",
+            "lymph_node_involvement",
+            "survival_status"
+          ]
+        }
+      ]
+    },
+    "table": {
+      "enabled": true,
+      "pageLimit": {
+        "limit": 10000
+      },
+      "fields": [
+        "gussid",
+        "modality",
+        "phenotype",
+        "compartment",
+        "tissue_id",
+        "donor_id",
+        "tissue_site",
+        "clinical_subtype",
+        "image_url"
+      ],
+      "linkFields": ["image_url"]
+    },
+    "dropdowns": {
+      "download-table": {
+        "title": "Download Table",
+        "leftIcon": "gen3:download",
+        "rightIcon": "gen3:chevron-down",
+        "dropdownItems": [
+          {
+            "enabled": true,
+            "type": "data-json",
+            "title": "JSON",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "action": "data-json",
+            "actionArgs": {
+              "filename": "bcca_assays.json"
+            }
+          },
+          {
+            "enabled": true,
+            "type": "data-csv",
+            "title": "CSV",
+            "leftIcon": "datafile",
+            "rightIcon": "download",
+            "action": "data-csv",
+            "actionArgs": {
+              "filename": "bcca_assays.csv"
+            }
+          }
+        ]
+      }
+    },
+    "buttons": [
+      {
+        "enabled": true,
+        "type": "manifest",
+        "action": "manifest",
+        "title": "Download Manifest",
+        "leftIcon": "datafile",
+        "rightIcon": "download",
+        "fileName": "assay_manifest.json"
+      }
+    ],
+    "loginForDownload": false,
+    "guppyConfig": {
+      "dataType": "assay",
+      "nodeCountTitle": "Assays"
+    }
   }
 ]
