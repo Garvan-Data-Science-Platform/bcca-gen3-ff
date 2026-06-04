@@ -3,16 +3,12 @@
     "tabTitle": "Donors",
     "charts": {
       "ethnicity": {
-        "chartType": "bar",
+        "chartType": "verticalBarChart",
         "title": "Ethnicity"
       },
       "menopausal_status": {
         "chartType": "fullPie",
         "title": "Menopausal Status"
-      },
-      "bc_type": {
-        "chartType": "horizontalStacked",
-        "title": "Breast cancer type"
       },
       "clinical_subtype": {
         "chartType": "horizontalStacked",
@@ -127,7 +123,7 @@
         "title": "Tissue Type"
       },
       "tissue_site": {
-        "chartType": "bar",
+        "chartType": "horizontalStacked",
         "title": "Tissue Site"
       },
       "clinical_subtype": {
