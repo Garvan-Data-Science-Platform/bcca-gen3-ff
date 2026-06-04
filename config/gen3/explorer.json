@@ -7,7 +7,7 @@
         "title": "Ethnicity"
       },
       "menopausal_status": {
-        "chartType": "pie",
+        "chartType": "fullPie",
         "title": "Menopausal Status"
       },
       "bc_type": {
@@ -123,7 +123,7 @@
     "tabTitle": "Tissues",
     "charts": {
       "tissue_type": {
-        "chartType": "pie",
+        "chartType": "fullPie",
         "title": "Tissue Type"
       },
       "tissue_site": {
@@ -258,7 +258,7 @@
         "title": "Modality"
       },
       "phenotype": {
-        "chartType": "pie",
+        "chartType": "fullPie",
         "title": "Phenotype"
       }
     },
