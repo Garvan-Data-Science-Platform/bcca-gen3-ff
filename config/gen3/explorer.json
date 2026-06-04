@@ -11,11 +11,11 @@
         "title": "Menopausal Status"
       },
       "bc_type": {
-        "chartType": "stackedBar",
+        "chartType": "horizontalStacked",
         "title": "Breast cancer type"
       },
       "clinical_subtype": {
-        "chartType": "stackedBar",
+        "chartType": "horizontalStacked",
         "title": "Clinical Subtype"
       }
     },
@@ -131,7 +131,7 @@
         "title": "Tissue Site"
       },
       "clinical_subtype": {
-        "chartType": "stackedBar",
+        "chartType": "horizontalStacked",
         "title": "Clinical Subtype"
       }
     },
@@ -254,7 +254,7 @@
     "tabTitle": "Assays",
     "charts": {
       "modality": {
-        "chartType": "stackedBar",
+        "chartType": "horizontalStacked",
         "title": "Modality"
       },
       "phenotype": {
