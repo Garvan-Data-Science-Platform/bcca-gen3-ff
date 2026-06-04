@@ -3,7 +3,7 @@
     "tabTitle": "Donors",
     "charts": {
       "ethnicity": {
-        "chartType": "verticalBarChart",
+        "chartType": "fullPie",
         "title": "Ethnicity"
       },
       "menopausal_status": {
