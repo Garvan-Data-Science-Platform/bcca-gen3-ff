@@ -9,11 +9,11 @@
         "rows": [
           {
             "Icon": {
-              "logo": "/icons/gen3.png",
+              "logo": "/icons/garvan-logo.png",
               "width": 132,
               "height": 60,
-              "description": "Gen3",
-              "href": "https://gen3.org"
+              "description": "Garvan Institute of Medical Research",
+              "href": "https://www.garvan.org.au/"
             }
           }
         ]
