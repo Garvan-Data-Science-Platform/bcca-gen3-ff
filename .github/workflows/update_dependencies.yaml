@@ -1,11 +1,14 @@
 name: Update package dependencies
 
+# on:
+#   pull_request:
+#     types: [opened, synchronize]
+#     paths:
+#       - 'package.json'
+#       - 'package-lock.json'
+
 on:
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - 'package.json'
-      - 'package-lock.json'
+  workflow_dispatch:
 
 jobs:
   update-package-dependencies:
