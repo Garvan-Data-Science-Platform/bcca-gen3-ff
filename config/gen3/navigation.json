@@ -15,14 +15,6 @@
     },
     "items": [
       {
-        "icon": "gen3:query",
-        "href": "/Discovery",
-        "name": "Discovery",
-        "tooltip": {
-          "authorized": "Use free-text search and tags to rapidly find relevant studies."
-        }
-      },
-      {
         "icon": "gen3:dictionary",
         "href": "/DataDictionary",
         "name": "Dictionary",
@@ -77,27 +69,14 @@
         "tooltip": {
           "authorized": "Create API keys for programmatic data access, and review your authorization privileges to datasets and services."
         }
-      },
-      {
-        "icon": "gen3:profile",
-        "href": "/DataLibrary",
-        "name": "Data Library",
-        "tooltip": {
-          "authorized": "library of data"
-        }
       }
     ]
   },
   "topBar": {
     "items": [
       {
-        "rightIcon": "gen3:upload",
-        "href": "/Submission",
-        "name": "Browse Data"
-      },
-      {
         "href": "https://docs.gen3.org/",
-        "name": "Documentation"
+        "name": "Gen3 Documentation"
       }
     ],
     "loginButtonVisibility": "visible"
