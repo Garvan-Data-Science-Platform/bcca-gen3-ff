@@ -2,21 +2,21 @@
   {
     "tabTitle": "Donors",
     "charts": {
-      "bc_type": {
-        "chartType": "horizontalStacked",
-        "title": "Breast Cancer Type"
-      },
-      "menopausal_status": {
-        "chartType": "fullPie",
-        "title": "Menopausal Status"
-      },
       "clinical_subtype": {
         "chartType": "horizontalStacked",
-        "title": "Clinical Subtype"
+        "title": "Clinical Subtype (ER x HER2)"
       },
-      "lymph_node_involvement": {
+      "bc_type": {
+        "chartType": "fullPie",
+        "title": "Histology"
+      },
+      "survival_status": {
+        "chartType": "donut",
+        "title": "Survival Status"
+      },
+      "menopausal_status": {
         "chartType": "bar",
-        "title": "Lymph Node Involvement"
+        "title": "Menopausal Status"
       }
     },
     "filters": {
@@ -27,16 +27,16 @@
             "sex",
             "age_at_diagnosis",
             "menopausal_status",
-            "ethnicity",
             "bc_type",
             "clinical_subtype",
             "core_clinical_subtype",
-            "lymph_node_involvement",
-            "ki67_initial_diagnosis",
+            "subtype_progression",
             "survival_status",
+            "overall_survival",
+            "followup_time_months",
             "distant_metastasis_flag",
             "local_recurrence_flag",
-            "mutation_gene"
+            "new_bca_primary_flag"
           ]
         },
         {
@@ -62,11 +62,12 @@
         "sex",
         "age_at_diagnosis",
         "menopausal_status",
-        "ethnicity",
         "bc_type",
         "clinical_subtype",
-        "lymph_node_involvement",
+        "core_clinical_subtype",
         "survival_status",
+        "followup_time_months",
+        "distant_metastasis_flag",
         "tissue_count",
         "assay_count"
       ]
@@ -130,9 +131,13 @@
         "chartType": "horizontalStacked",
         "title": "Tissue Site"
       },
+      "therapeutic_status": {
+        "chartType": "donut",
+        "title": "Therapeutic Status"
+      },
       "clinical_subtype": {
         "chartType": "horizontalStacked",
-        "title": "Clinical Subtype"
+        "title": "Clinical Subtype (ER x HER2)"
       }
     },
     "filters": {
@@ -144,14 +149,17 @@
             "tissue_category",
             "therapeutic_status",
             "tissue_site",
-            "er_status",
-            "pr_status",
-            "her2_ihc",
-            "ki67_percentage",
-            "tils_percentage",
+            "tissue_site_detail",
+            "date_of_collection",
+            "age",
             "clinical_subtype",
             "core_clinical_subtype",
             "grade",
+            "er_status",
+            "pr_status",
+            "her2_ihc",
+            "her2_ish",
+            "ki67_percentage",
             "ecotype_broad",
             "ecotype"
           ]
@@ -174,8 +182,10 @@
             "menopausal_status",
             "bc_type",
             "donor_clinical_subtype",
-            "lymph_node_involvement",
-            "survival_status"
+            "donor_core_clinical_subtype",
+            "survival_status",
+            "overall_survival",
+            "distant_metastasis_flag"
           ]
         }
       ]
@@ -197,7 +207,7 @@
         "her2_ihc",
         "clinical_subtype",
         "grade",
-        "ecotype_broad",
+        "has_wts",
         "has_visium",
         "has_xenium"
       ]
@@ -260,6 +270,10 @@
       "phenotype": {
         "chartType": "fullPie",
         "title": "Phenotype"
+      },
+      "compartment": {
+        "chartType": "donut",
+        "title": "Compartment"
       }
     },
     "filters": {
@@ -294,8 +308,10 @@
             "menopausal_status",
             "bc_type",
             "donor_clinical_subtype",
-            "lymph_node_involvement",
-            "survival_status"
+            "donor_core_clinical_subtype",
+            "survival_status",
+            "overall_survival",
+            "distant_metastasis_flag"
           ]
         }
       ]
