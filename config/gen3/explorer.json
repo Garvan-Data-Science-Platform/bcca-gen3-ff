@@ -2,9 +2,9 @@
   {
     "tabTitle": "Donors",
     "charts": {
-      "ethnicity": {
-        "chartType": "fullPie",
-        "title": "Ethnicity"
+      "bc_type": {
+        "chartType": "horizontalStacked",
+        "title": "Breast Cancer Type"
       },
       "menopausal_status": {
         "chartType": "fullPie",
@@ -13,6 +13,10 @@
       "clinical_subtype": {
         "chartType": "horizontalStacked",
         "title": "Clinical Subtype"
+      },
+      "lymph_node_involvement": {
+        "chartType": "bar",
+        "title": "Lymph Node Involvement"
       }
     },
     "filters": {
@@ -356,7 +360,7 @@
         "fileName": "assay_manifest.json"
       }
     ],
-    "loginForDownload": false,
+    "loginForDownload": true,
     "guppyConfig": {
       "dataType": "assay",
       "nodeCountTitle": "Assays"
