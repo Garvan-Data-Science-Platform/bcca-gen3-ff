@@ -1,0 +1,2 @@
+sample_id,donor_id,tissue_id,mean_reads_per_spot,fraction_reads_in_spots
+SAMPLE_001,DONOR_001,TISSUE_A,52340,0.87

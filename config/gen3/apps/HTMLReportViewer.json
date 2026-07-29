@@ -1,0 +1,41 @@
+{
+  "reportsBaseUrl": "/reports",
+  "assays": [
+    {
+      "id": "wgs-sash",
+      "label": "WGS - Sash",
+      "indexCsv": "wgs/sash.csv",
+      "landingPage": "wgs/sash.html",
+      "sampleReportDir": "wgs/sash",
+      "sampleIdColumn": "sample_id",
+      "reportPathColumn": "report_path"
+    },
+    {
+      "id": "wgs-tumor-normal",
+      "label": "WGS - Tumor/Normal",
+      "indexCsv": "wgs/tumor-normal.csv",
+      "landingPage": "wgs/tumor-normal.html",
+      "sampleReportDir": "wgs/tumor-normal",
+      "sampleIdColumn": "sample_id",
+      "reportPathColumn": "report_path"
+    },
+    {
+      "id": "wgs-umccrise",
+      "label": "WGS - UMCCrise",
+      "indexCsv": "wgs/umccrise.csv",
+      "landingPage": "wgs/umccrise.html",
+      "sampleReportDir": "wgs/umccrise",
+      "sampleIdColumn": "sample_id",
+      "reportPathColumn": "report_path"
+    },
+    {
+      "id": "visium-spaceranger",
+      "label": "Visium - SpaceRanger",
+      "indexCsv": "visium/spaceranger/sequencing_metrics.csv",
+      "landingPage": null,
+      "sampleReportDir": "visium/spaceranger/web_summaries",
+      "sampleIdColumn": "sample_id",
+      "reportPathColumn": null
+    }
+  ]
+}

@@ -2,17 +2,13 @@
   {
     "tabTitle": "Donors",
     "charts": {
+      "age_at_diagnosis": {
+        "chartType": "donut",
+        "title": "Age at Diagnosis"
+      },
       "clinical_subtype": {
         "chartType": "horizontalStacked",
         "title": "Clinical Subtype (ER x HER2)"
-      },
-      "bc_type": {
-        "chartType": "fullPie",
-        "title": "Histology"
-      },
-      "survival_status": {
-        "chartType": "donut",
-        "title": "Survival Status"
       },
       "menopausal_status": {
         "chartType": "bar",
@@ -36,7 +32,10 @@
             "followup_time_months",
             "distant_metastasis_flag",
             "local_recurrence_flag",
-            "new_bca_primary_flag"
+            "new_bca_primary_flag",
+            "ancestry",
+            "reference_superpopulation",
+            "ancestry_conflict"
           ]
         },
         {
@@ -47,7 +46,8 @@
             "snp_count",
             "chromium_count",
             "visium_count",
-            "xenium_count"
+            "xenium_count",
+            "report_count"
           ]
         }
       ]
@@ -172,7 +172,8 @@
             "has_snp",
             "has_chromium",
             "has_visium",
-            "has_xenium"
+            "has_xenium",
+            "has_report"
           ]
         },
         {
@@ -288,6 +289,13 @@
           ]
         },
         {
+          "title": "Reports",
+          "fields": [
+            "reports.assay_type",
+            "reports.pipeline"
+          ]
+        },
+        {
           "title": "Tissue",
           "fields": [
             "tissue_type",
@@ -330,7 +338,8 @@
         "donor_id",
         "tissue_site",
         "clinical_subtype",
-        "image_url"
+        "image_url",
+        "reports"
       ],
       "linkFields": ["image_url"]
     },

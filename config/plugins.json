@@ -1,0 +1,6 @@
+[
+  {
+    "name": "HTMLReportViewer",
+    "module": "../src/apps/HTMLReportViewer/registerApp"
+  }
+]
