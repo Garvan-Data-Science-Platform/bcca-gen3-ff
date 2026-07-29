@@ -2,10 +2,6 @@
   {
     "tabTitle": "Donors",
     "charts": {
-      "age_at_diagnosis": {
-        "chartType": "bar",
-        "title": "Age at Diagnosis"
-      },
       "clinical_subtype": {
         "chartType": "horizontalStacked",
         "title": "Clinical Subtype (ER x HER2)"
