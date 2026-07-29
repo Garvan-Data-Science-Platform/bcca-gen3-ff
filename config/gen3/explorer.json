@@ -3,7 +3,7 @@
     "tabTitle": "Donors",
     "charts": {
       "age_at_diagnosis": {
-        "chartType": "bar",
+        "chartType": "horizontalStacked",
         "title": "Age at Diagnosis"
       },
       "clinical_subtype": {
@@ -11,7 +11,7 @@
         "title": "Clinical Subtype (ER x HER2)"
       },
       "menopausal_status": {
-        "chartType": "bar",
+        "chartType": "horizontalStacked",
         "title": "Menopausal Status"
       }
     },
@@ -339,7 +339,7 @@
         "tissue_site",
         "clinical_subtype",
         "image_url",
-        "reports"
+        "reports.pipeline"
       ],
       "linkFields": ["image_url"]
     },
