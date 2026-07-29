@@ -9,6 +9,10 @@
       "menopausal_status": {
         "chartType": "horizontalStacked",
         "title": "Menopausal Status"
+      },
+      "overall_survival": {
+        "chartType": "fullPie",
+        "title": "Overall Survival"
       }
     },
     "filters": {
@@ -181,8 +185,7 @@
             "donor_clinical_subtype",
             "donor_core_clinical_subtype",
             "survival_status",
-            "overall_survival",
-            "distant_metastasis_flag"
+            "overall_survival"
           ]
         }
       ]
@@ -314,8 +317,7 @@
             "donor_clinical_subtype",
             "donor_core_clinical_subtype",
             "survival_status",
-            "overall_survival",
-            "distant_metastasis_flag"
+            "overall_survival"
           ]
         }
       ]
