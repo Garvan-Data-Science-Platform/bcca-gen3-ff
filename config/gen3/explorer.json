@@ -3,7 +3,7 @@
     "tabTitle": "Donors",
     "charts": {
       "age_at_diagnosis": {
-        "chartType": "horizontalStacked",
+        "chartType": "bar",
         "title": "Age at Diagnosis"
       },
       "clinical_subtype": {
