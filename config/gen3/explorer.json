@@ -11,7 +11,7 @@
         "title": "Menopausal Status"
       },
       "overall_survival": {
-        "chartType": "fullPie",
+        "chartType": "donut",
         "title": "Overall Survival"
       }
     },
@@ -124,7 +124,7 @@
     "tabTitle": "Tissues",
     "charts": {
       "tissue_type": {
-        "chartType": "fullPie",
+        "chartType": "donut",
         "title": "Tissue Type"
       },
       "tissue_site": {
@@ -268,7 +268,7 @@
         "title": "Modality"
       },
       "phenotype": {
-        "chartType": "fullPie",
+        "chartType": "donut",
         "title": "Phenotype"
       },
       "compartment": {
