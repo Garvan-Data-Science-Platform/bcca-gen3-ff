@@ -14,7 +14,7 @@
           },
           {
             "link": {
-              "href": "/discovery",
+              "href": "/Explorer",
               "linkType": "portal",
               "text": "Explore Gen3 Data"
             }
@@ -24,7 +24,7 @@
           },
           {
             "link": {
-              "href": "https://gen3.datacommons.io",
+              "href": "https://gen3.org/",
               "text": "Learn More"
             }
           }
@@ -35,30 +35,6 @@
               "src": "https://gen3.org/figs/kv.svg",
               "alt": "Gen3 Data Platform"
             }
-          }
-        ]
-      }
-    },
-    {
-      "break": "standard"
-    },
-    {
-      "cardsArea": {
-        "title": "",
-        "cards": [
-          {
-            "icon": "MdOutlineSearch",
-            "bodyText": "Search studies and related datasets for download or analysis in a workspace.",
-            "btnText": "Discover",
-            "href": "/Discovery",
-            "linkType": "portal"
-          },
-          {
-            "icon": "MdOutlineBarChart",
-            "bodyText": "Explore Tutorials and Example Analysis.",
-            "btnText": "Analyze",
-            "href": "/resource-browser",
-            "linkType": "portal"
           }
         ]
       }
