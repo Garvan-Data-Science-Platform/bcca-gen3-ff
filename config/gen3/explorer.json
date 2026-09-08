@@ -132,20 +132,24 @@
     "tabTitle": "Tissues",
     "charts": {
       "tissue_type": {
-        "chartType": "donut",
-        "title": "Tissue Type"
-      },
-      "tissue_site": {
-        "chartType": "horizontalStacked",
-        "title": "Tissue Site"
+        "chartType": "fullPie",
+        "title": "Tissue Type",
+        "label": { "show": true }
       },
       "therapeutic_status": {
-        "chartType": "donut",
-        "title": "Therapeutic Status"
+        "chartType": "fullPie",
+        "title": "Therapeutic Status",
+        "label": { "show": true }
+      },
+      "tissue_site": {
+        "chartType": "verticalBarChart",
+        "title": "Tissue Site",
+        "showLegendInChart": true
       },
       "clinical_subtype": {
-        "chartType": "horizontalStacked",
-        "title": "Clinical Subtype (ER x HER2)"
+        "chartType": "verticalBarChart",
+        "title": "Clinical Subtype (ER x HER2)",
+        "showLegendInChart": true
       }
     },
     "filters": {
@@ -276,12 +280,14 @@
         "title": "Modality"
       },
       "phenotype": {
-        "chartType": "donut",
-        "title": "Phenotype"
+        "chartType": "fullPie",
+        "title": "Phenotype",
+        "label": { "show": true }
       },
       "compartment": {
-        "chartType": "donut",
-        "title": "Compartment"
+        "chartType": "fullPie",
+        "title": "Compartment",
+        "label": { "show": true }
       }
     },
     "filters": {
