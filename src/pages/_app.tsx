@@ -32,6 +32,7 @@ import drsHostnames from '../../config/drsHostnames.json';
 import { loadContent } from '@/lib/content/loadContent';
 import Loading from '../components/Loading';
 import DatadogInit from '@/components/DatadogInit';
+import UnderDevelopmentBanner from '@/components/UnderDevelopmentBanner';
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
@@ -110,6 +111,7 @@ const Gen3App = ({
             modalsConfig={modalsConfig}
             protectedRoutesConfig={protectedRoutes}
           >
+            <UnderDevelopmentBanner />
             <Component {...pageProps} />
           </Gen3Provider>
         </MantineProvider>
