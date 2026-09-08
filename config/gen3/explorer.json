@@ -276,7 +276,7 @@
     "tabTitle": "Assays",
     "charts": {
       "modality": {
-        "chartType": "horizontalStacked",
+        "chartType": "verticalBarChart",
         "title": "Modality"
       },
       "phenotype": {
