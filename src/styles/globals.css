@@ -17,3 +17,19 @@
 }
 
 @tailwind variants;
+
+/*
+ * Override the hardcoded 4-column layout in @gen3/frontend's CollapsableCharts.
+ * Mantine 9 emits Grid.Col widths via generated <style> blocks (not inline
+ * style attrs), so we force flex-basis/max-width/width directly on any col
+ * element (or direct grid-inner child) inside the cohort builder.
+ */
+#cohort-builder-content [class*="mantine-Grid-col"],
+#cohort-builder-content [class*="Grid-inner"] > * {
+  flex-basis: calc(50% - var(--grid-column-gap, 1rem) / 2) !important;
+  max-width: calc(50% - var(--grid-column-gap, 1rem) / 2) !important;
+  width: auto !important;
+  flex-grow: 0 !important;
+}
+
+

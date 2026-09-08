@@ -2,17 +2,25 @@
   {
     "tabTitle": "Donors",
     "charts": {
-      "clinical_subtype": {
-        "chartType": "horizontalStacked",
-        "title": "Clinical Subtype (ER x HER2)"
-      },
       "menopausal_status": {
-        "chartType": "horizontalStacked",
-        "title": "Menopausal Status"
+        "chartType": "verticalBarChart",
+        "title": "Menopausal Status",
+        "showLegendInChart": true
+      },
+      "subtype_progression": {
+        "chartType": "verticalBarChart",
+        "title": "Clinical Progression",
+        "showLegendInChart": true
       },
       "overall_survival": {
-        "chartType": "donut",
-        "title": "Overall Survival"
+        "chartType": "fullPie",
+        "title": "Overall Survival",
+        "label": { "show": true }
+      },
+      "distant_metastasis_flag": {
+        "chartType": "fullPie",
+        "title": "Distant Metastasis",
+        "label": { "show": true }
       }
     },
     "filters": {
