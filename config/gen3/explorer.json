@@ -15,12 +15,14 @@
       "overall_survival": {
         "chartType": "fullPie",
         "title": "Overall Survival",
-        "label": { "show": true }
+        "label": { "show": true },
+        "showLegendInChart": true
       },
       "distant_metastasis_flag": {
         "chartType": "fullPie",
         "title": "Distant Metastasis",
-        "label": { "show": true }
+        "label": { "show": true },
+        "showLegendInChart": true
       }
     },
     "filters": {
