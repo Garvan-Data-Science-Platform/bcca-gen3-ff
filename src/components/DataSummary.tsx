@@ -1,5 +1,5 @@
-import React from 'react';
-import { EmptyFilterSet, useGetCountsQuery, useGetAggsQuery } from '@gen3/core';
+import { useMemo } from 'react';
+import { EmptyFilterSet, useGetCountsQuery } from '@gen3/core';
 
 const formatNumber = (n: number | undefined) =>
   n == null ? '—' : new Intl.NumberFormat('en-US').format(n);
@@ -25,92 +25,198 @@ const StatTile = ({ label, value, isLoading, isError }: StatTileProps) => (
   </div>
 );
 
-interface AggBucket {
-  key: string;
-  count: number;
+const MODALITY_FIELDS = [
+  { field: 'wgs_count', label: 'WGS' },
+  { field: 'wts_count', label: 'WTS' },
+  { field: 'snp_count', label: 'SNP' },
+  { field: 'chromium_count', label: 'Chromium' },
+  { field: 'visium_count', label: 'Visium' },
+  { field: 'xenium_count', label: 'Xenium' },
+] as const;
+
+// Stable filter objects (module-level) so RTK-Query doesn't refetch.
+const gtZero = (field: string) =>
+  ({
+    mode: 'and',
+    root: { [field]: { operator: '>', field, operand: 0 } },
+  }) as any;
+const F_WGS = gtZero('wgs_count');
+const F_WTS = gtZero('wts_count');
+const F_SNP = gtZero('snp_count');
+const F_CHR = gtZero('chromium_count');
+const F_VIS = gtZero('visium_count');
+const F_XEN = gtZero('xenium_count');
+
+interface ModalityStat {
+  label: string;
+  donorsWith: number;
+}
+interface CoverageData {
+  totalDonors: number;
+  modalities: ModalityStat[];
 }
 
-const useModalityBuckets = (): {
-  buckets: AggBucket[];
+const useModalityCoverage = (): {
+  data: CoverageData | null;
   isLoading: boolean;
   isError: boolean;
+  errorMessage: string | null;
 } => {
-  const { data, isLoading, isError } = useGetAggsQuery({
-    type: 'assay',
-    fields: ['modality'],
-    filters: EmptyFilterSet,
-  });
+  const total = useGetCountsQuery({ type: 'donor', filters: EmptyFilterSet });
+  const c0 = useGetCountsQuery({ type: 'donor', filters: F_WGS });
+  const c1 = useGetCountsQuery({ type: 'donor', filters: F_WTS });
+  const c2 = useGetCountsQuery({ type: 'donor', filters: F_SNP });
+  const c3 = useGetCountsQuery({ type: 'donor', filters: F_CHR });
+  const c4 = useGetCountsQuery({ type: 'donor', filters: F_VIS });
+  const c5 = useGetCountsQuery({ type: 'donor', filters: F_XEN });
 
-  const raw = ((data as any)?.modality ?? []) as Array<{
-    key: unknown;
-    count: unknown;
-  }>;
+  const donorCounts = [c0, c1, c2, c3, c4, c5];
 
-  const buckets: AggBucket[] = raw
-    .map((b) => ({
-      key: b.key == null ? 'Unknown' : String(b.key),
-      count: Number(b.count ?? 0),
-    }))
-    .filter((b) => b.count > 0)
-    .sort((a, b) => b.count - a.count);
+  const isLoading =
+    total.isLoading || donorCounts.some((q) => q.isLoading);
+  const isError = total.isError || donorCounts.some((q) => q.isError);
+  const firstError =
+    (total.error as any) ?? donorCounts.find((q) => q.error)?.error;
 
-  return { buckets, isLoading, isError };
+  const coverage = useMemo<CoverageData | null>(() => {
+    const totalDonors = Number(total.data ?? 0);
+    if (!totalDonors) return null;
+
+    const modalities: ModalityStat[] = MODALITY_FIELDS.map((m, i) => ({
+      label: m.label,
+      donorsWith: Number(donorCounts[i].data ?? 0),
+    })).sort((a, b) => b.donorsWith - a.donorsWith);
+
+    return { totalDonors, modalities };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    total.data,
+    c0.data,
+    c1.data,
+    c2.data,
+    c3.data,
+    c4.data,
+    c5.data,
+  ]);
+
+  const errorMessage = isError
+    ? firstError?.data?.message ?? firstError?.message ?? 'Query failed'
+    : null;
+
+  return { data: coverage, isLoading, isError, errorMessage };
 };
 
-const ModalityBarChart = () => {
-  const { buckets, isLoading, isError } = useModalityBuckets();
+const PRIMARY = '#99286B';
+const TRACK = '#F3F0F2';
+
+const WAFFLE_COLS = 10;
+const WAFFLE_ROWS = 10;
+const WAFFLE_CELL = 8;
+const WAFFLE_GAP = 2;
+const WAFFLE_UNITS =
+  WAFFLE_COLS * (WAFFLE_CELL + WAFFLE_GAP) - WAFFLE_GAP;
+
+const WaffleChart = ({ data }: { data: CoverageData }) => {
+  const total = WAFFLE_COLS * WAFFLE_ROWS;
+
+  return (
+    <div
+      className="grid gap-3"
+      style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}
+    >
+      {data.modalities.map((m) => {
+        const pct = (m.donorsWith / data.totalDonors) * 100;
+        const filled = Math.round((m.donorsWith / data.totalDonors) * total);
+        return (
+          <div
+            key={m.label}
+            className="min-w-0 rounded border border-base-lighter p-4 flex items-center gap-4"
+          >
+            <div
+              className="shrink-0 aspect-square w-[38%] max-w-[120px] min-w-[64px]"
+              role="img"
+              aria-label={`${m.label}: ${m.donorsWith} of ${data.totalDonors} participants (${pct.toFixed(0)}%)`}
+            >
+              <svg
+                viewBox={`0 0 ${WAFFLE_UNITS} ${WAFFLE_UNITS}`}
+                width="100%"
+                height="100%"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                {Array.from({ length: total }).map((_, i) => {
+                  const col = i % WAFFLE_COLS;
+                  const rowFromBottom = Math.floor(i / WAFFLE_COLS);
+                  const row = WAFFLE_ROWS - 1 - rowFromBottom;
+                  const x = col * (WAFFLE_CELL + WAFFLE_GAP);
+                  const y = row * (WAFFLE_CELL + WAFFLE_GAP);
+                  return (
+                    <rect
+                      key={i}
+                      x={x}
+                      y={y}
+                      width={WAFFLE_CELL}
+                      height={WAFFLE_CELL}
+                      rx={1}
+                      fill={i < filled ? PRIMARY : TRACK}
+                    />
+                  );
+                })}
+              </svg>
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="text-sm font-semibold text-base-darkest truncate">
+                {m.label}
+              </div>
+              <div className="text-3xl font-bold text-primary tabular-nums leading-none mt-1">
+                {pct.toFixed(0)}%
+              </div>
+              <div className="text-xs text-base-dark tabular-nums mt-1 truncate">
+                {formatNumber(m.donorsWith)} / {formatNumber(data.totalDonors)}{' '}
+                participants
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const ModalityCoverageSection = () => {
+  const { data, isLoading, isError, errorMessage } = useModalityCoverage();
 
   if (isLoading) {
     return (
       <div className="text-sm text-base-dark py-6 text-center">
-        Loading assay breakdown…
+        Loading modality coverage…
       </div>
     );
   }
-  if (isError || buckets.length === 0) {
+  if (isError) {
     return (
       <div className="text-sm text-base-dark py-6 text-center">
-        No assay breakdown available.
+        Could not load modality coverage
+        {errorMessage ? ` — ${errorMessage}` : '.'}
+      </div>
+    );
+  }
+  if (!data) {
+    return (
+      <div className="text-sm text-base-dark py-6 text-center">
+        No modality coverage available.
       </div>
     );
   }
 
-  const max = Math.max(...buckets.map((b) => b.count));
-
   return (
-    <div
-      className="grid items-center gap-x-4 gap-y-2 text-sm"
-      style={{ gridTemplateColumns: 'minmax(120px, max-content) 1fr auto' }}
-      role="list"
-      aria-label="Assays grouped by modality"
-    >
-      {buckets.map((b) => {
-        const pct = Math.max(2, (b.count / max) * 100);
-        return (
-          <React.Fragment key={b.key}>
-            <div
-              className="truncate text-base-darkest font-medium"
-              title={b.key}
-              role="listitem"
-            >
-              {b.key}
-            </div>
-            <div
-              className="relative h-6 rounded bg-base-lightest overflow-hidden"
-              aria-hidden="true"
-            >
-              <div
-                className="absolute inset-y-0 left-0 rounded bg-primary transition-[width] duration-500"
-                style={{ width: `${pct}%` }}
-                title={`${b.key}: ${formatNumber(b.count)}`}
-              />
-            </div>
-            <div className="tabular-nums text-base-darkest text-right min-w-[64px]">
-              {formatNumber(b.count)}
-            </div>
-          </React.Fragment>
-        );
-      })}
+    <div className="rounded-lg border border-base-lighter bg-base-max px-4 py-4">
+      <div className="mb-3">
+        <p className="text-xs text-base-dark">
+          Share of {formatNumber(data.totalDonors)} participants with ≥1 assay
+          of each modality.
+        </p>
+      </div>
+      <WaffleChart data={data} />
     </div>
   );
 };
@@ -123,15 +229,15 @@ const DataSummary = () => {
   return (
     <section
       aria-labelledby="data-summary-heading"
-      className="w-full max-w-6xl mx-auto px-6 py-10"
+      className="w-full max-w-6xl mx-auto px-6 pt-4 pb-6"
     >
       <h2
         id="data-summary-heading"
-        className="text-xl font-semibold text-primary mb-4"
+        className="text-xl font-semibold text-primary mb-3"
       >
         Current data holdings
       </h2>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-3">
         <StatTile
           label="Donors"
           value={donors.data as number | undefined}
@@ -152,11 +258,11 @@ const DataSummary = () => {
         />
       </div>
 
-      <div className="mt-8 rounded-lg border border-base-lighter bg-base-max px-6 py-5">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-base-dark mb-4">
-          Assays by modality
-        </h3>
-        <ModalityBarChart />
+      <div className="mt-5">
+        <h2 className="text-xl font-semibold text-primary mb-3">
+          Assay modality coverage
+        </h2>
+        <ModalityCoverageSection />
       </div>
     </section>
   );
