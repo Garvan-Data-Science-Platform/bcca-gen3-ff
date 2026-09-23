@@ -30,6 +30,7 @@
         {
           "title": "Donor",
           "fields": [
+            "project_code",
             "sex",
             "age_at_diagnosis",
             "menopausal_status",
@@ -159,6 +160,7 @@
         {
           "title": "Tissue",
           "fields": [
+            "project_code",
             "tissue_type",
             "tissue_category",
             "therapeutic_status",
@@ -297,6 +299,7 @@
         {
           "title": "Assay",
           "fields": [
+            "project_code",
             "modality",
             "phenotype",
             "compartment",
