@@ -1,64 +1,65 @@
 [
   {
-    "tabTitle": "Donors",
+    "tabTitle": "Assays",
     "charts": {
-      "menopausal_status": {
+      "modality": {
         "chartType": "verticalBarChart",
-        "title": "Menopausal Status",
-        "showLegendInChart": true
+        "title": "Modality"
       },
-      "subtype_progression": {
-        "chartType": "verticalBarChart",
-        "title": "Clinical Progression",
-        "showLegendInChart": true
-      },
-      "overall_survival": {
+      "phenotype": {
         "chartType": "fullPie",
-        "title": "Overall Survival",
-        "label": { "show": true },
-        "showLegendInChart": true
+        "title": "Phenotype",
+        "label": { "show": true }
       },
-      "distant_metastasis_flag": {
+      "compartment": {
         "chartType": "fullPie",
-        "title": "Distant Metastasis",
-        "label": { "show": true },
-        "showLegendInChart": true
+        "title": "Compartment",
+        "label": { "show": true }
       }
     },
     "filters": {
       "tabs": [
         {
-          "title": "Donor",
+          "title": "Assay",
           "fields": [
             "project_code",
-            "sex",
-            "age_at_diagnosis",
-            "menopausal_status",
-            "bc_type",
-            "clinical_subtype",
-            "core_clinical_subtype",
-            "subtype_progression",
-            "survival_status",
-            "overall_survival",
-            "followup_time_months",
-            "distant_metastasis_flag",
-            "local_recurrence_flag",
-            "new_bca_primary_flag",
-            "ancestry",
-            "reference_superpopulation",
-            "ancestry_conflict"
+            "modality",
+            "phenotype",
+            "compartment",
+            "batch"
           ]
         },
         {
-          "title": "Assays",
+          "title": "Reports",
           "fields": [
-            "wgs_count",
-            "wts_count",
-            "snp_count",
-            "chromium_count",
-            "visium_count",
-            "xenium_count",
-            "report_count"
+            "reports.assay_type",
+            "reports.pipeline"
+          ]
+        },
+        {
+          "title": "Tissue",
+          "fields": [
+            "tissue_type",
+            "tissue_category",
+            "tissue_site",
+            "therapeutic_status",
+            "er_status",
+            "pr_status",
+            "her2_ihc",
+            "clinical_subtype",
+            "grade"
+          ]
+        },
+        {
+          "title": "Donor",
+          "fields": [
+            "age_at_diagnosis",
+            "menopausal_status",
+            "bc_type",
+            "donor_clinical_subtype",
+            "donor_core_clinical_subtype",
+            "survival_status",
+            "overall_survival"
           ]
         }
       ]
@@ -69,19 +70,18 @@
         "limit": 10000
       },
       "fields": [
+        "gussid",
+        "modality",
+        "phenotype",
+        "compartment",
+        "tissue_id",
         "donor_id",
-        "sex",
-        "age_at_diagnosis",
-        "menopausal_status",
-        "bc_type",
+        "tissue_site",
         "clinical_subtype",
-        "core_clinical_subtype",
-        "survival_status",
-        "followup_time_months",
-        "distant_metastasis_flag",
-        "tissue_count",
-        "assay_count"
-      ]
+        "image_url",
+        "reports.pipeline"
+      ],
+      "linkFields": ["image_url"]
     },
     "dropdowns": {
       "download-table": {
@@ -97,7 +97,7 @@
             "rightIcon": "download",
             "action": "data-json",
             "actionArgs": {
-              "filename": "bcca_donors.json"
+              "filename": "bcca_assays.json"
             }
           },
           {
@@ -108,7 +108,7 @@
             "rightIcon": "download",
             "action": "data-csv",
             "actionArgs": {
-              "filename": "bcca_donors.csv"
+              "filename": "bcca_assays.csv"
             }
           }
         ]
@@ -122,15 +122,16 @@
         "title": "Download Manifest",
         "leftIcon": "datafile",
         "rightIcon": "download",
-        "fileName": "donor_manifest.json"
+        "fileName": "assay_manifest.json"
       }
     ],
-    "loginForDownload": false,
+    "loginForDownload": true,
     "guppyConfig": {
-      "dataType": "donor",
-      "nodeCountTitle": "Donors"
+      "dataType": "assay",
+      "nodeCountTitle": "Assays"
     }
   },
+
   {
     "tabTitle": "Tissues",
     "charts": {
@@ -277,66 +278,65 @@
     }
   },
   {
-    "tabTitle": "Assays",
+    "tabTitle": "Donors",
     "charts": {
-      "modality": {
+      "menopausal_status": {
         "chartType": "verticalBarChart",
-        "title": "Modality"
+        "title": "Menopausal Status",
+        "showLegendInChart": true
       },
-      "phenotype": {
-        "chartType": "fullPie",
-        "title": "Phenotype",
-        "label": { "show": true }
+      "subtype_progression": {
+        "chartType": "verticalBarChart",
+        "title": "Clinical Progression",
+        "showLegendInChart": true
       },
-      "compartment": {
+      "overall_survival": {
         "chartType": "fullPie",
-        "title": "Compartment",
-        "label": { "show": true }
+        "title": "Overall Survival",
+        "label": { "show": true },
+        "showLegendInChart": true
+      },
+      "distant_metastasis_flag": {
+        "chartType": "fullPie",
+        "title": "Distant Metastasis",
+        "label": { "show": true },
+        "showLegendInChart": true
       }
     },
     "filters": {
       "tabs": [
         {
-          "title": "Assay",
-          "fields": [
-            "project_code",
-            "modality",
-            "phenotype",
-            "compartment",
-            "batch"
-          ]
-        },
-        {
-          "title": "Reports",
-          "fields": [
-            "reports.assay_type",
-            "reports.pipeline"
-          ]
-        },
-        {
-          "title": "Tissue",
-          "fields": [
-            "tissue_type",
-            "tissue_category",
-            "tissue_site",
-            "therapeutic_status",
-            "er_status",
-            "pr_status",
-            "her2_ihc",
-            "clinical_subtype",
-            "grade"
-          ]
-        },
-        {
           "title": "Donor",
           "fields": [
+            "project_code",
+            "sex",
             "age_at_diagnosis",
             "menopausal_status",
             "bc_type",
-            "donor_clinical_subtype",
-            "donor_core_clinical_subtype",
+            "clinical_subtype",
+            "core_clinical_subtype",
+            "subtype_progression",
             "survival_status",
-            "overall_survival"
+            "overall_survival",
+            "followup_time_months",
+            "distant_metastasis_flag",
+            "local_recurrence_flag",
+            "new_bca_primary_flag",
+            "ancestry",
+            "reference_superpopulation",
+            "ancestry_conflict"
+          ]
+        },
+        {
+          "title": "Assays",
+          "fields": [
+            "wgs_count",
+            "wts_count",
+            "snp_count",
+            "chromium_count",
+            "visium_count",
+            "xenium_count",
+            "report_count"
           ]
         }
       ]
@@ -347,18 +347,19 @@
         "limit": 10000
       },
       "fields": [
-        "gussid",
-        "modality",
-        "phenotype",
-        "compartment",
-        "tissue_id",
         "donor_id",
-        "tissue_site",
+        "sex",
+        "age_at_diagnosis",
+        "menopausal_status",
+        "bc_type",
         "clinical_subtype",
-        "image_url",
-        "reports.pipeline"
-      ],
-      "linkFields": ["image_url"]
+        "core_clinical_subtype",
+        "survival_status",
+        "followup_time_months",
+        "distant_metastasis_flag",
+        "tissue_count",
+        "assay_count"
+      ]
     },
     "dropdowns": {
       "download-table": {
@@ -374,7 +375,7 @@
             "rightIcon": "download",
             "action": "data-json",
             "actionArgs": {
-              "filename": "bcca_assays.json"
+              "filename": "bcca_donors.json"
             }
           },
           {
@@ -385,7 +386,7 @@
             "rightIcon": "download",
             "action": "data-csv",
             "actionArgs": {
-              "filename": "bcca_assays.csv"
+              "filename": "bcca_donors.csv"
             }
           }
         ]
@@ -399,13 +400,13 @@
         "title": "Download Manifest",
         "leftIcon": "datafile",
         "rightIcon": "download",
-        "fileName": "assay_manifest.json"
+        "fileName": "donor_manifest.json"
       }
     ],
-    "loginForDownload": true,
+    "loginForDownload": false,
     "guppyConfig": {
-      "dataType": "assay",
-      "nodeCountTitle": "Assays"
+      "dataType": "donor",
+      "nodeCountTitle": "Donors"
     }
   }
 ]
