@@ -1,0 +1,80 @@
+diff --git a/node_modules/@gen3/frontend/dist/index/cjs/index-D0coYH7R.js b/node_modules/@gen3/frontend/dist/index/cjs/index-D0coYH7R.js
+index 473a1b8..19f27a3 100644
+--- a/node_modules/@gen3/frontend/dist/index/cjs/index-D0coYH7R.js
++++ b/node_modules/@gen3/frontend/dist/index/cjs/index-D0coYH7R.js
+@@ -23553,7 +23553,7 @@ const EmptyData = {};
+     const isSm = hooks.useMediaQuery('(min-width: 639px)');
+     const isMd = hooks.useMediaQuery('(min-width: 1373px)');
+     const isXl = hooks.useMediaQuery('(min-width: 1600px)');
+-    const [accessLevel, setAccessLevel] = React.useState(core$1.Accessibility.ALL);
++    const [accessLevel, setAccessLevel] = React.useState(core$1.Accessibility.ACCESSIBLE);
+     const sharedFiltersMap = core$1.useCoreSelector((state)=>core$1.selectSharedFilters(state));
+     const defaultDropdowns = React.useMemo(()=>dropdowns ?? {}, [
+         dropdowns
+@@ -24066,7 +24066,7 @@ const TabbedCohortBuilder = ({ index, tabsConfiguration, indexPrefix = '', field
+     const routerTab = router$1?.query?.tab;
+     const prevRouterTab = core$1.usePrevious(routerTab);
+     const [activeTab, setActiveTab] = React.useState(routerTab ? routerTab : Object.keys(tabsConfig)[0]);
+-    const [accessLevel, setAccessLevel] = React.useState(core$1.Accessibility.ALL);
++    const [accessLevel, setAccessLevel] = React.useState(core$1.Accessibility.ACCESSIBLE);
+     const cohortId = core$1.useCoreSelector((state)=>core$1.selectCurrentCohortId(state));
+     const cohortFilters = core$1.useCoreSelector((state)=>core$1.selectIndexFilters(state, index));
+     const { data: aggsData, isSuccess, isFetching: isAggsQueryFetching, isError: isAggsQueryError } = core$1.useGetAggsQuery({
+@@ -24380,7 +24380,7 @@ const FileFacetPanel = ({ filters, index, tabTitle, fieldMapping, indexPrefix =
+     const fields = React.useMemo(()=>getAllFieldsFromFilterConfigs(filters?.tabs ?? []), [
+         filters?.tabs
+     ]);
+-    const [accessLevel, setAccessLevel] = React.useState(core$1.Accessibility.ALL);
++    const [accessLevel, setAccessLevel] = React.useState(core$1.Accessibility.ACCESSIBLE);
+     const [facetDefinitions, setFacetDefinitions] = React.useState({});
+     const coreDispatch = core$1.useCoreDispatch();
+     const allFiltersCollapsed = core$1.useCoreSelector((state)=>core$1.selectAllCohortFiltersCollapsed(state, index));
+@@ -24499,7 +24499,7 @@ const RepositoryPanel = ({ guppyConfig, filters, table, dropdowns, buttons, logi
+     const defaultButtons = React.useMemo(()=>buttons ?? [], [
+         buttons
+     ]);
+-    const [accessLevel, setAccessLevel] = React.useState(core$1.Accessibility.ALL);
++    const [accessLevel, setAccessLevel] = React.useState(core$1.Accessibility.ACCESSIBLE);
+     const index = guppyConfig.dataType;
+     const indexPrefix = guppyConfig?.indexPrefix ?? '';
+     React.useMemo(()=>getAllFieldsFromFilterConfigs(filters?.tabs ?? []), [
+diff --git a/node_modules/@gen3/frontend/dist/index/esm/index-DDIXM_VO.js b/node_modules/@gen3/frontend/dist/index/esm/index-DDIXM_VO.js
+index 1145f2b..0e540f1 100644
+--- a/node_modules/@gen3/frontend/dist/index/esm/index-DDIXM_VO.js
++++ b/node_modules/@gen3/frontend/dist/index/esm/index-DDIXM_VO.js
+@@ -23507,7 +23507,7 @@ const EmptyData = {};
+     const isSm = useMediaQuery('(min-width: 639px)');
+     const isMd = useMediaQuery('(min-width: 1373px)');
+     const isXl = useMediaQuery('(min-width: 1600px)');
+-    const [accessLevel, setAccessLevel] = useState(Accessibility.ALL);
++    const [accessLevel, setAccessLevel] = useState(Accessibility.ACCESSIBLE);
+     const sharedFiltersMap = useCoreSelector((state)=>selectSharedFilters(state));
+     const defaultDropdowns = useMemo(()=>dropdowns ?? {}, [
+         dropdowns
+@@ -24020,7 +24020,7 @@ const TabbedCohortBuilder = ({ index, tabsConfiguration, indexPrefix = '', field
+     const routerTab = router?.query?.tab;
+     const prevRouterTab = usePrevious(routerTab);
+     const [activeTab, setActiveTab] = useState(routerTab ? routerTab : Object.keys(tabsConfig)[0]);
+-    const [accessLevel, setAccessLevel] = useState(Accessibility.ALL);
++    const [accessLevel, setAccessLevel] = useState(Accessibility.ACCESSIBLE);
+     const cohortId = useCoreSelector((state)=>selectCurrentCohortId$1(state));
+     const cohortFilters = useCoreSelector((state)=>selectIndexFilters(state, index));
+     const { data: aggsData, isSuccess, isFetching: isAggsQueryFetching, isError: isAggsQueryError } = useGetAggsQuery({
+@@ -24334,7 +24334,7 @@ const FileFacetPanel = ({ filters, index, tabTitle, fieldMapping, indexPrefix =
+     const fields = useMemo(()=>getAllFieldsFromFilterConfigs(filters?.tabs ?? []), [
+         filters?.tabs
+     ]);
+-    const [accessLevel, setAccessLevel] = useState(Accessibility.ALL);
++    const [accessLevel, setAccessLevel] = useState(Accessibility.ACCESSIBLE);
+     const [facetDefinitions, setFacetDefinitions] = useState({});
+     const coreDispatch = useCoreDispatch();
+     const allFiltersCollapsed = useCoreSelector((state)=>selectAllCohortFiltersCollapsed(state, index));
+@@ -24453,7 +24453,7 @@ const RepositoryPanel = ({ guppyConfig, filters, table, dropdowns, buttons, logi
+     const defaultButtons = useMemo(()=>buttons ?? [], [
+         buttons
+     ]);
+-    const [accessLevel, setAccessLevel] = useState(Accessibility.ALL);
++    const [accessLevel, setAccessLevel] = useState(Accessibility.ACCESSIBLE);
+     const index = guppyConfig.dataType;
+     const indexPrefix = guppyConfig?.indexPrefix ?? '';
+     useMemo(()=>getAllFieldsFromFilterConfigs(filters?.tabs ?? []), [
