@@ -10,6 +10,9 @@ WORKDIR /gen3
 
 # Copy dependency files first for better caching
 COPY package.json package-lock.json ./
+# patches/ must be present before `npm ci` so the postinstall `patch-package`
+# step can apply them to node_modules.
+COPY patches ./patches
 
 # Install ALL dependencies once (including dev deps for build)
 RUN npm config set fetch-retries 5 && \
