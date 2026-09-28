@@ -22,7 +22,7 @@
         {
           "title": "Assay",
           "fields": [
-            "project_code",
+            "authz",
             "modality",
             "phenotype",
             "compartment",
@@ -128,7 +128,10 @@
     "loginForDownload": true,
     "guppyConfig": {
       "dataType": "assay",
-      "nodeCountTitle": "Assays"
+      "nodeCountTitle": "Assays",
+      "fieldMapping": [
+        { "field": "authz", "name": "Projects", "tooltip": "Arborist resource paths this record is authorizable under. Includes the record's own project plus every analytic cohort it belongs to per bcarc's projects.csv." }
+      ]
     }
   },
 
@@ -161,7 +164,7 @@
         {
           "title": "Tissue",
           "fields": [
-            "project_code",
+            "authz",
             "tissue_type",
             "tissue_category",
             "therapeutic_status",
@@ -274,7 +277,10 @@
     "loginForDownload": false,
     "guppyConfig": {
       "dataType": "tissue",
-      "nodeCountTitle": "Tissues"
+      "nodeCountTitle": "Tissues",
+      "fieldMapping": [
+        { "field": "authz", "name": "Projects", "tooltip": "Arborist resource paths this record is authorizable under. Includes the record's own project plus every analytic cohort it belongs to per bcarc's projects.csv." }
+      ]
     }
   },
   {
@@ -308,7 +314,7 @@
         {
           "title": "Donor",
           "fields": [
-            "project_code",
+            "authz",
             "sex",
             "age_at_diagnosis",
             "menopausal_status",
@@ -406,7 +412,10 @@
     "loginForDownload": false,
     "guppyConfig": {
       "dataType": "donor",
-      "nodeCountTitle": "Donors"
+      "nodeCountTitle": "Donors",
+      "fieldMapping": [
+        { "field": "authz", "name": "Projects", "tooltip": "Arborist resource paths this record is authorizable under. Includes the record's own project plus every analytic cohort it belongs to per bcarc's projects.csv." }
+      ]
     }
   }
 ]
