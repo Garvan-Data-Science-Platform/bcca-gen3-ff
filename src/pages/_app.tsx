@@ -1,4 +1,5 @@
-import App, { AppProps, AppContext, AppInitialProps } from 'next/app';
+import type { AppProps, AppContext, AppInitialProps } from 'next/app';
+import App from 'next/app';
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { MantineProvider, mergeThemeOverrides } from '@mantine/core';
 
@@ -13,11 +14,13 @@ import {
   DefaultAuthorizedRoutesConfig,
   Gen3Provider,
   type ModalsConfig,
+  registerBaseSowerActions,
   registerCohortBuilderDefaultPreviewRenderers,
+  registerCohortSowerActions,
   registerCohortDiscoveryApp,
   registerExplorerDefaultCellRenderers,
   registerMetadataSchemaApp,
-  registerIGVApp
+  registerIGVApp,
 } from '@gen3/frontend';
 import { registerDefaultRemoteSupport, setDRSHostnames } from '@gen3/core';
 import { registerCohortTableCustomCellRenderers } from '@/lib/CohortBuilder/CustomCellRenderers';
@@ -84,11 +87,13 @@ const Gen3App = ({
       registerCohortBuilderDefaultPreviewRenderers();
       registerCohortTableCustomCellRenderers();
       registerCustomExplorerDetailsPanels();
+      registerBaseSowerActions();
+      registerCohortSowerActions();
       isFirstRender.current = false;
       const gen3ThemeDynamic = createMantineTheme(fonts, colors);
       const mergedTheme = mergeThemeOverrides(gen3ThemeDynamic);
       setMantineTheme(mergedTheme);
-      setMantineTheme(mergedTheme);
+      // oxlint-disable-next-line no-console
       console.log('Gen3 App initialized');
     }
   }, []);

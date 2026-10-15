@@ -67,6 +67,26 @@ Also re-check:
 - that `ReactECharts` still only binds `events` once (`useStableHandler` works around this);
 - that the access-level patch still sets `ACCESSIBLE`, or update `CHART_ACCESSIBILITY`.
 
+### Re-making the access-level patch
+
+`patches/@gen3+frontend+<version>.patch` changes the Explorer's default access
+level from `ALL` to `ACCESSIBLE`. It is tied to the bundle's hashed file names, so
+every upgrade needs a new one. `npm install` does **not** fail when it no longer
+applies: it prints an error and continues, leaving the app on `ALL`.
+
+1. Find the chunks the package actually loads: the one import in
+   `dist/index/esm/index.js` and the one `require` in `dist/index/cjs/index.js`
+   (the package ships many unused duplicate chunks).
+2. In both, change `const [accessLevel, setAccessLevel] = …Accessibility.ALL` to
+   `ACCESSIBLE`. In 0.12.88 that's 4 places: `CohortPanel`, `TabbedCohortBuilder`,
+   `FileFacetPanel`, `RepositoryPanel`. `ClinicalDataAnalysis`
+   (`const [accessLevel] = …`, no setter) has always been left on `ALL`.
+3. `npx patch-package @gen3/frontend`, delete the old patch, then `npm ci` to
+   confirm it applies.
+4. Delete `.next` before testing: the dev server otherwise keeps serving the
+   previously compiled, unpatched framework.
+5. Logged out, each Explorer tab header should read `--` (no accessible records).
+
 ## Tests
 
 ```sh
