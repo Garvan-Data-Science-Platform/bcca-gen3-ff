@@ -72,19 +72,19 @@
           "supportedValues": {
             "accessible": {
               "enabled": true,
-              "menuText": "Available"
+              "label": "Available"
             },
             "unaccessible": {
               "enabled": false,
-              "menuText": "Not Accessible"
+              "label": "Not Accessible"
             },
             "pending": {
               "enabled": true,
-              "menuText": "Pending"
+              "label": "Pending"
             },
             "notAvailable": {
               "enabled": true,
-              "menuText": "Not Available"
+              "label": "Not Available"
             }
           }
         }
@@ -235,18 +235,21 @@
         "dataAvailabilityField": "data_availability",
         "uid": "_hdp_uid"
       },
-      "tagCategories": [
-        {
-          "name": "Condition",
-          "color": "#532565",
-          "display": false
-        },
-        {
-          "name": "Data Type",
-          "color": "#982568",
-          "display": false
-        }
-      ]
+      "tags": {
+        "tagCategories": [
+          {
+            "name": "Condition",
+            "color": "#532565",
+            "display": false
+          },
+          {
+            "name": "Data Type",
+            "color": "#982568",
+            "display": false
+          }
+        ],
+        "showUnknownTags": false
+      }
     }
   ]
 }
