@@ -1,22 +1,59 @@
 [
   {
     "tabTitle": "Assays",
-    "charts": {
-      "modality": {
-        "chartType": "verticalBarChart",
+    "customCharts": [
+      {
+        "type": "modalityCombinations",
+        "title": "Donors per combination of assay modalities",
+        "width": "full",
+        "groupField": "donor_id",
+        "categoryField": "modality",
+        "unit": "donors",
+        "modalities": [
+          {
+            "value": "wgs",
+            "label": "WGS"
+          },
+          {
+            "value": "wts",
+            "label": "WTS"
+          },
+          {
+            "value": "snp",
+            "label": "SNP"
+          },
+          {
+            "value": "chromium",
+            "label": "Chromium"
+          },
+          {
+            "value": "visium",
+            "label": "Visium"
+          },
+          {
+            "value": "xenium",
+            "label": "Xenium"
+          }
+        ],
+        "maxColumns": 20,
+        "maxRecords": 10000
+      },
+      {
+        "type": "bar",
+        "field": "modality",
         "title": "Modality"
       },
-      "phenotype": {
-        "chartType": "fullPie",
-        "title": "Phenotype",
-        "label": { "show": true }
+      {
+        "type": "pie",
+        "field": "phenotype",
+        "title": "Phenotype"
       },
-      "compartment": {
-        "chartType": "fullPie",
-        "title": "Compartment",
-        "label": { "show": true }
+      {
+        "type": "pie",
+        "field": "compartment",
+        "title": "Compartment"
       }
-    },
+    ],
     "filters": {
       "tabs": [
         {
@@ -137,28 +174,29 @@
 
   {
     "tabTitle": "Tissues",
-    "charts": {
-      "tissue_type": {
-        "chartType": "fullPie",
-        "title": "Tissue Type",
-        "label": { "show": true }
+    "customCharts": [
+      {
+        "type": "pie",
+        "field": "tissue_type",
+        "title": "Tissue Type"
       },
-      "therapeutic_status": {
-        "chartType": "fullPie",
-        "title": "Therapeutic Status",
-        "label": { "show": true }
+      {
+        "type": "pie",
+        "field": "therapeutic_status",
+        "title": "Therapeutic Status"
       },
-      "tissue_site": {
-        "chartType": "verticalBarChart",
+      {
+        "type": "bar",
+        "field": "tissue_site",
         "title": "Tissue Site",
-        "showLegendInChart": true
+        "orientation": "horizontal"
       },
-      "clinical_subtype": {
-        "chartType": "verticalBarChart",
-        "title": "Clinical Subtype (ER x HER2)",
-        "showLegendInChart": true
+      {
+        "type": "bar",
+        "field": "clinical_subtype",
+        "title": "Clinical Subtype (ER x HER2)"
       }
-    },
+    ],
     "filters": {
       "tabs": [
         {
@@ -285,30 +323,29 @@
   },
   {
     "tabTitle": "Donors",
-    "charts": {
-      "menopausal_status": {
-        "chartType": "verticalBarChart",
-        "title": "Menopausal Status",
-        "showLegendInChart": true
+    "customCharts": [
+      {
+        "type": "bar",
+        "field": "menopausal_status",
+        "title": "Menopausal Status"
       },
-      "subtype_progression": {
-        "chartType": "verticalBarChart",
+      {
+        "type": "bar",
+        "field": "subtype_progression",
         "title": "Clinical Progression",
-        "showLegendInChart": true
+        "orientation": "horizontal"
       },
-      "overall_survival": {
-        "chartType": "fullPie",
-        "title": "Overall Survival",
-        "label": { "show": true },
-        "showLegendInChart": true
+      {
+        "type": "pie",
+        "field": "overall_survival",
+        "title": "Overall Survival"
       },
-      "distant_metastasis_flag": {
-        "chartType": "fullPie",
-        "title": "Distant Metastasis",
-        "label": { "show": true },
-        "showLegendInChart": true
+      {
+        "type": "pie",
+        "field": "distant_metastasis_flag",
+        "title": "Distant Metastasis"
       }
-    },
+    ],
     "filters": {
       "tabs": [
         {
