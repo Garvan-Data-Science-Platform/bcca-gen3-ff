@@ -19,7 +19,7 @@
       "loginRequired": false
     },
     "/Query": {
-      "loginRequired": true
+      "loginRequired": false
     },
     "/Analysis": {
       "loginRequired": true
