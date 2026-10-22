@@ -4,6 +4,26 @@ on:
   push:
     branches:
       - main
+    # Only rebuild when something baked into the image changes. config/ is
+    # mounted at runtime, so config-only pushes skip the build.
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'patches/**'
+      - 'docker/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'next.config.js'
+      - 'tsconfig.json'
+      - 'tailwind.config.js'
+      - 'postcss.config.js'
+      - '.env.production'
+      - 'start_with_config.sh'
+      - 'start.sh'
+      - 'Dockerfile.config'
+      - 'Dockerfile.production'
+      - '.dockerignore'
+      - '.github/workflows/build_push.yaml'
   workflow_dispatch:
 
 jobs:
