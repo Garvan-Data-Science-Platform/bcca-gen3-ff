@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    # config/ is mounted at runtime, so config-only pushes skip the build.
+    paths-ignore:
+      - 'config/**'
   workflow_dispatch:
 
 jobs:
